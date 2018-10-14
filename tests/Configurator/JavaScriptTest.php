@@ -113,28 +113,6 @@ class JavaScriptTest extends Test
 	}
 
 	/**
-	* @testdox getParser() optionally accepts a config array as argument
-	*/
-	public function testGetParserWithConfig()
-	{
-		$configurator = new Configurator;
-		$configurator->tags->add('FOO');
-		$configurator->rootRules->allowChild('FOO');
-
-		$this->configurator->enableJavaScript();
-
-		$this->assertNotContains(
-			'FOO',
-			$this->configurator->javascript->getParser()
-		);
-
-		$this->assertContains(
-			'FOO',
-			$this->configurator->javascript->getParser($configurator->asConfig())
-		);
-	}
-
-	/**
 	* @testdox A plugin's quickMatch value is preserved if it's valid UTF-8
 	*/
 	public function testQuickMatchUTF8()

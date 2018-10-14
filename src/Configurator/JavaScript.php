@@ -124,12 +124,11 @@ class JavaScript
 	}
 
 	/**
-	* Get a JavaScript parser
+	* Get a JavaScript parser based on this instance's configurator
 	*
-	* @param  array  $config Config array returned by the configurator
-	* @return string         JavaScript parser
+	* @return string JavaScript parser
 	*/
-	public function getParser(array $config = null)
+	public function getParser()
 	{
 		$this->configOptimizer->reset();
 
@@ -139,7 +138,7 @@ class JavaScript
 		$this->xsl = $xslt->getXSL($this->configurator->rendering);
 
 		// Prepare the parser's config
-		$this->config = (isset($config)) ? $config : $this->configurator->asConfig();
+		$this->config = $this->configurator->asConfig();
 		$this->config = ConfigHelper::filterConfig($this->config, 'JS');
 		$this->config = $this->callbackGenerator->replaceCallbacks($this->config);
 
